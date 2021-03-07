@@ -34,19 +34,17 @@ class Home(View):
         if form.is_valid():
             form.save()
             time_added = datetime.timedelta(days = 7)
-            if self.time_object:
+            if Time.objects.last():
                 self.time_object.time = self.time_object.time + time_added
             else:
                 time = Time.objects.create()
                 time.time = time.time + time_added
                 time.save()
 
-                time_calculated = time_object.time - timezone.now()
         time_object = Time.objects.last()
-
         time_calculated = (time_object.time - timezone.now()).total_seconds()
         form = self.form_class()
         now = timezone.now()
-        return render(request, self.template_name, {'form': form,'time':self.time_object.time, 'messages':self.query,'now':now, 'time_calculated':time_calculated})
+        return render(request, self.template_name, {'form': form, 'messages':self.query,'now':now, 'time_calculated':time_calculated})
     
          
