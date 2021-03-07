@@ -42,7 +42,7 @@ class Home(View):
                 time.save()
 
         time_object = Time.objects.last()
-        time_calculated = (time_object.time - timezone.now()).total_seconds()
+        time_calculated = (self.time_object.time - timezone.now()).total_seconds()
         form = self.form_class()
         now = timezone.now()
         return render(request, self.template_name, {'form': form, 'messages':self.query,'now':now, 'time_calculated':time_calculated})
