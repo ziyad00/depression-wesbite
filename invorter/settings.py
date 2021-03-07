@@ -25,7 +25,7 @@ SECRET_KEY = '9s3q3%r!b)he5fl0&)b67-_=jd536gh$!m1yt&bs-n399bhdul'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://depressionapp0.herokuapp.com']
+ALLOWED_HOSTS = ['depressionapp0.herokuapp.com']
 
 
 # Application definition
