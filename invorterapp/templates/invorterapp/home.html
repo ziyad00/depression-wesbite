@@ -90,17 +90,16 @@ time_calculated = '{{time_calculated}}';
 var date = now.split(",");
 var distance = time_calculated ;
 
-var messages = []
+var messages2 = []
 {% for message in messages %}
-
-messages.push('{{message.text}}');
-
+messages2.push('{{message.text}}');
+console.log('{{message}}')
 {%endfor%}
 
 random = Math.floor(Math.random() * 10); 
 
-console.log(messages[0]);
-var message = setInterval(function() {
+console.log('{{messages}}');
+var messagefunc = setInterval(function() {
 
 // Get today's date and time
 //var now = new Date().getTime();
@@ -119,10 +118,10 @@ var minutes = Math.floor(distance % 3600 / 60);
 var seconds = Math.floor(distance % 60);
 
 // Display the result in the element with id="demo"
-document.getElementById("text").innerHTML = messages[Math.floor(Math.random() * messages.length)]
-document.getElementById("text2").innerHTML = messages[Math.floor(Math.random() * messages.length)]
-document.getElementById("text3").innerHTML = messages[Math.floor(Math.random() * messages.length)]
-document.getElementById("text4").innerHTML = messages[Math.floor(Math.random() * messages.length)]
+document.getElementById("text").innerHTML = messages2[Math.floor(Math.random() * messages2.length)]
+document.getElementById("text2").innerHTML = messages2[Math.floor(Math.random() * messages2.length)]
+document.getElementById("text3").innerHTML = messages2[Math.floor(Math.random() * messages2.length)]
+document.getElementById("text4").innerHTML = messages2[Math.floor(Math.random() * messages2.length)]
 
 // If the count down is finished, write some text
 
