@@ -43,10 +43,25 @@
                 Some Message Made Me Not Sad
             </div>
             <div class="card-body">
-                <h5 class="card-title">{% with selected_contact=messages|random %}{{selected_contact.text}}</h5>
+                <div class="row">
+                    <div class="col">
+                        <p class="card-text" id='text'></p>
+                    </div>
+                    <div class="col">
+                        <p class="card-text" id='text2'></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                        <p class="card-text" id='text3'></p>
+                    </div>
+                    <div class="col">
+                        <p class="card-text" id='text4'></p>
+                    </div>
+               
+                  </div>
+                </div>
 
-                {%endwith%}
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
             </div>
 
         </div>
@@ -65,35 +80,83 @@
         crossorigin="anonymous"></script>
     <script>
 var countDownDate = document.getElementById("time")
+var text = document.getElementById("text")
+
 var time = '{{time}}';
-countDownDate=time
-now = '{{now}}'
+countDownDate=time;
+now = '{{now}}';
+time_calculated = '{{time_calculated}}';
+
+var date = now.split(",");
+var distance = time_calculated ;
+
+var messages = []
+{% for message in messages %}
+
+messages.push('{{message.text}}');
+
+{%endfor%}
+
+random = Math.floor(Math.random() * 10); 
+
+console.log(messages[0]);
+var message = setInterval(function() {
+
+// Get today's date and time
+//var now = new Date().getTime();
+
+// Find the distance between now and the count down date
+//dateObject = new Date();
+//dateObject.setFullYear(date[1])
+//console.log(dateObject)
+
+distance = distance-1 ;
+
+// Time calculations for days, hours, minutes and seconds
+var days = Math.floor(distance / (3600*24));
+var hours = Math.floor(distance % (3600*24) / 3600);
+var minutes = Math.floor(distance % 3600 / 60);
+var seconds = Math.floor(distance % 60);
+
+// Display the result in the element with id="demo"
+document.getElementById("text").innerHTML = messages[Math.floor(Math.random() * messages.length)]
+document.getElementById("text2").innerHTML = messages[Math.floor(Math.random() * messages.length)]
+document.getElementById("text3").innerHTML = messages[Math.floor(Math.random() * messages.length)]
+document.getElementById("text4").innerHTML = messages[Math.floor(Math.random() * messages.length)]
+
+// If the count down is finished, write some text
+
+}, 3000);
 var x = setInterval(function() {
 
 // Get today's date and time
 //var now = new Date().getTime();
-//console.log(now)
+
 // Find the distance between now and the count down date
-var distance = countDownDate - now  ;
-console.log(distance)
+//dateObject = new Date();
+//dateObject.setFullYear(date[1])
+//console.log(dateObject)
+
+distance = distance-1 ;
 
 // Time calculations for days, hours, minutes and seconds
-var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+var days = Math.floor(distance / (3600*24));
+var hours = Math.floor(distance % (3600*24) / 3600);
+var minutes = Math.floor(distance % 3600 / 60);
+var seconds = Math.floor(distance % 60);
 
 // Display the result in the element with id="demo"
 document.getElementById("time").innerHTML = days + "d " + hours + "h "
 + minutes + "m " + seconds + "s ";
 
 // If the count down is finished, write some text
-if (distance < 0) {
+if (time_calculated < 0) {
   clearInterval(x);
   document.getElementById("time").innerHTML = "ALL THE DATA GETS DELETED!";
 }
 }, 1000);
-console.log(time)
+
+
     </script>
 </body>
 

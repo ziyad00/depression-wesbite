@@ -4,7 +4,10 @@ from django.views import View
 from .forms import MessageForm
 from .models import Message,Time
 import datetime
+import time
 from django.utils import timezone
+from django.utils.timezone import utc
+
 
 class Home(View):
     form_class = MessageForm
@@ -21,8 +24,8 @@ class Home(View):
                 Message.objects.all().delete()
                 Time.objects.all().delete()
                 return render(request, self.template_name, {'form': form})
-            time_calculated = self.time_object.time - timezone.now()
-            return render(request, self.template_name, {'form': form, 'messages':self.query,'time':self.time_object.time, 'now':now})
+            time_calculated = (self.time_object.time - timezone.now()).total_seconds()
+            return render(request, self.template_name, {'form': form, 'messages':self.query, 'now':now, 'time_calculated':time_calculated})
         return render(request, self.template_name, {'form': form, 'messages':self.query})
 
 
@@ -40,6 +43,7 @@ class Home(View):
             time_calculated = self.time_object.time - timezone.now()
         form = self.form_class()
         now = timezone.now()
-        return render(request, self.template_name, {'form': form,'time':self.time_object.time, 'messages':self.query,'now':now})
+        time_calculated = (self.time_object.time - timezone.now()).total_seconds()
+        return render(request, self.template_name, {'form': form,'time':self.time_object.time, 'messages':self.query,'now':now, 'time_calculated':time_calculated})
     
          

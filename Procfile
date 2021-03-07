@@ -1,0 +1,1 @@
+web: gunicorn invorter.wsgi --log-file -
