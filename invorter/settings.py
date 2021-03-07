@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '9s3q3%r!b)he5fl0&)b67-_=jd536gh$!m1yt&bs-n399bhdul'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['depressionapp0.herokuapp.com']
 
